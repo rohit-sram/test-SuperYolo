@@ -178,6 +178,7 @@ class ComputeLoss:
         for i in range(self.nl):
             anchors = self.anchors[i]
             gain[2:6] = torch.tensor(p[i].shape)[[3, 2, 3, 2]]  # xyxy gain 获得当前输出层的宽高
+            gain = gain.long() # CHECK BACK LATER
 
             # Match targets to anchors
             t = targets * gain # 真实框相对坐标*输出层大小 = 真实框的绝对坐标  [num_anchors, num_targets, image_index + cls_id + bbox + anchor_index]

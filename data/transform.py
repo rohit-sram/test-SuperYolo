@@ -4,7 +4,7 @@
 
 import os
 import pandas as pd
-PATH = '/home/data/zhangjiaqing/dataset/' #chanhe the path firstly (PATH TO dataset)dddd
+PATH = '/content/drive/MyDrive/Research/Independent study/VEDAI_dataset/' #chanhe the path firstly (PATH TO dataset)dddd
 
 def update_annotations(filename,image_size,label_path,save_path):
     data = pd.read_csv(label_path + filename, sep=' ', index_col=None, header=None, names=['x_center', 'y_center', 'orientation', 'class', 'is_contained', 'is_occluded', 'corner1_x', 'corner2_x', 'corner3_x', 'corner4_x', 'corner1_y', 'corner2_y', 'corner3_y', 'corner4_y'])
@@ -26,8 +26,8 @@ def update_annotations(filename,image_size,label_path,save_path):
     res.to_csv(save_path+ filename, sep=' ', index=False, header=None)
 
 def makelabels():
-    label_path = PATH + 'VEDAI/Annotations512'
-    save_path = PATH + 'VEDAI/labels'
+    label_path = PATH + 'VEDAI_512/Annotations512'
+    save_path = PATH + 'VEDAI_512/labels'
     list = os.listdir(label_path)
     image_size = 512
     for filename in list:
@@ -36,9 +36,11 @@ def makelabels():
 
 def changepath():
     for i in ['01','02','03','04','05','06','07','08','09','10']:
-        path = PATH + 'VEDAI/fold{}.txt'.format(i)
+        path = PATH + 'VEDAI_512/fold{}.txt'.format(i)
         img_path = PATH + 'VEDAI_1024/images/'
-        write_path=(PATH + 'VEDAI/fold{}_write.txt').format(i)
+        write_path=(PATH + 'VEDAI_512/fold{}_write.txt').format(i) ##
+        os.makedirs(os.path.dirname(write_path), exist_ok=True)
+
         with open(path, "r") as file:
             img_files = file.readlines()
             for j in range(len(img_files)):
@@ -49,9 +51,9 @@ def changepath():
                 file.write(img_files[j]+'\n')
         file.close()
 
-        path = PATH + 'VEDAI/fold{}test.txt'.format(i)
-        img_path = PATH + 'VEDAI/images/'
-        write_path=PATH + 'VEDAI/fold{}test_write.txt'.format(i)
+        path = PATH + 'VEDAI_512/fold{}test.txt'.format(i)
+        img_path = PATH + 'VEDAI_512/images/'
+        write_path=PATH + 'VEDAI_512/fold{}test_write.txt'.format(i)
         with open(path, "r") as file:
             img_files = file.readlines()
             for j in range(len(img_files)):
