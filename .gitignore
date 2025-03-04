@@ -26,6 +26,9 @@ share/python-wheels/
 *.egg
 MANIFEST
 
+.DS_Store
+models/.DS_Store
+utils/.DS_Store
 syolo/
 runs/train/
 
