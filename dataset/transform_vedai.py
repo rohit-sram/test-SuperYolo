@@ -4,7 +4,10 @@
 
 import os
 import pandas as pd
-PATH = '/home/data4/zjq/'#'/home/data/zhangjiaqing/dataset/' #chanhe the path firstly (PATH TO dataset)
+from pathlib import Path
+
+# PATH = '/home/data4/zjq/'#'/home/data/zhangjiaqing/dataset/' #chanhe the path firstly (PATH TO dataset)
+PATH = Path(r"C:\Users\rsriram3\Documents\ind_study\VEDAI_dataset")
 
 def update_annotations(filename,image_size,label_path,save_path):
     data = pd.read_csv(label_path + filename, sep=' ', index_col=None, header=None, names=['x_center', 'y_center', 'orientation', 'class', 'is_contained', 'is_occluded', 'corner1_x', 'corner2_x', 'corner3_x', 'corner4_x', 'corner1_y', 'corner2_y', 'corner3_y', 'corner4_y'])
@@ -26,7 +29,7 @@ def update_annotations(filename,image_size,label_path,save_path):
     res.to_csv(save_path+ filename, sep=' ', index=False, header=None)
 
 def makelabels():
-    label_path = PATH + 'VEDAI/Annotations512'
+    label_path = PATH + 'VEDAI_512/Annotations512'
     save_path = PATH + 'VEDAI/labels'
     list = os.listdir(label_path)
     image_size = 512

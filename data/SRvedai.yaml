@@ -12,9 +12,13 @@
 # train and val data as 1) directory: path/images/, 2) file: path/images.txt, or 3) list: [path1/images/, path2/images/]
 # train: ../coco128/images/train2017/  # 128 images
 # val: ../coco128/images/train2017/  # 128 images
-train: /content/drive/MyDrive/Research/Independent study/VEDAI_dataset/VEDAI_512/fold01_write.txt
-test: /content/drive/MyDrive/Research/Independent study/VEDAI_dataset/VEDAI_512/fold01test_write.txt
-val: /content/drive/MyDrive/Research/Independent study/VEDAI_dataset/VEDAI_512/fold01test_write.txt
+
+# train: /content/drive/MyDrive/Research/Independent study/VEDAI_dataset/VEDAI_512/fold01_write.txt
+train: C:\Users\rsriram3\Documents\ind_study\VEDAI_dataset\VEDAI_512\fold01_write.txt
+# test: /content/drive/MyDrive/Research/Independent study/VEDAI_dataset/VEDAI_512/fold01test_write.txt
+test: C:\Users\rsriram3\Documents\ind_study\VEDAI_dataset\VEDAI_512\fold01test_write.txt
+# val: /content/drive/MyDrive/Research/Independent study/VEDAI_dataset/VEDAI_512/fold01test_write.txt
+val: C:\Users\rsriram3\Documents\ind_study\VEDAI_dataset\VEDAI_512\fold01test_write.txt
 
 # number of classes
 nc: 8

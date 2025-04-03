@@ -8,6 +8,8 @@ import numpy as np
 import torch
 import yaml
 from tqdm import tqdm
+import torch.serialization
+from numpy.core.multiarray import _reconstruct
 
 from models.experimental import attempt_load
 from utils.datasets import create_dataloader, create_dataloader_sr
@@ -60,6 +62,8 @@ def test(data,
         # Directories
         save_dir = Path(increment_path(Path(opt.project) / opt.name, exist_ok=opt.exist_ok))  # increment run
         (save_dir / 'labels' if save_txt else save_dir).mkdir(parents=True, exist_ok=True)  # make dir
+
+        torch.serialization.add_safe_globals([_reconstruct])
 
         # Load model
         model = attempt_load(weights, map_location=device)  # load FP32 model
@@ -354,7 +358,8 @@ if __name__ == '__main__':
     parser.add_argument('--conf-thres', type=float, default=0.001, help='object confidence threshold')
     parser.add_argument('--iou-thres', type=float, default=0.6, help='IOU threshold for NMS')
     parser.add_argument('--task', default='val', help='train, val, test, speed or study')
-    parser.add_argument('--device', default='1', help='cuda device, i.e. 0 or 0,1,2,3 or cpu')
+    # parser.add_argument('--device', default='1', help='cuda device, i.e. 0 or 0,1,2,3 or cpu')
+    parser.add_argument('--device', default='0', help='cuda device, i.e. 0 or 0,1,2,3 or cpu')
     parser.add_argument('--single-cls', action='store_true', help='treat as single-class dataset')
     parser.add_argument('--augment', action='store_true', help='augmented inference')
     parser.add_argument('--verbose', action='store_true', help='report mAP by class')

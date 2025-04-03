@@ -32,6 +32,7 @@ utils/.DS_Store
 syolo/
 runs/train/
 rohit_references
+weights/*.pt
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
